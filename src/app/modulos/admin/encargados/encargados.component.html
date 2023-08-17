@@ -1,0 +1,30 @@
+<div class="contenedor" [@slideInOut]>
+
+  <p class="title">Encargados</p>
+  <div class="log" id="log">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="col-1 tht">id</th>
+          <th class="col-2 tht">Nombre</th>
+          <th class="col-3 tht">Contacto</th>
+          <th class="col-2 tht">Contraseña</th>
+          <th class="col-1 tht">&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let encargado of encargados" id="table">
+          <th>{{encargado.id}}</th>
+          <th id="dta" (click)="cambiarNombre(encargado.nombre)">{{encargado.nombre}}</th>
+          <th id="dta" (click)="cambiarContacto(encargado.contacto)">{{encargado.contacto}}</th>
+          <th id="dta" (click)="cambiarContra(encargado.pass)">{{encargado.pass}}</th>
+          <th id="dta" (click)="eliminarEncargado(encargado.id)"><i class="fa-solid fa-trash" style="color: #000000;"></i></th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <button type="button" class="btn btn-success p-2" (click)="agregar()">Agregar encargado</button>
+  <button type="button" class="btn btn-danger p-2" (click)="limpiar()">Limpiar lista</button>
+
+</div>

@@ -1,0 +1,75 @@
+
+<div class="paneles">
+  <nav id="nav" (mouseenter)="displayMenu()" (mouseleave)="closeMenu()">
+    <div class="reactive" id="reactive">
+      <i class="fa-solid fa-caret-right fa-2x icon" style="color: rgb(216, 214, 214);"></i>
+    </div>
+
+    <div class="nave" id="navbar">
+      <div class="brand" routerLink="/admin/inicio">
+        <i class="fa-solid fa-truck-ramp-box fa-2x" style="color: #000000;"></i>
+        <p>Dulcecitos</p>
+      </div>
+      <div class="menu">
+        <ul class="lista-menu">
+          <!-- Botones Admin -->
+          <li routerLink="/admin/inicio">
+            <div class="extra">
+              <i class="fa-solid fa-pen"></i>
+              Registros
+            </div>
+          </li> <!--Muestra los logs de errores-->
+          <li routerLink="/admin/encargados">
+            <div class="extra">
+              <i class="fa-solid fa-user"></i>
+              Encargados
+            </div>
+          </li> <!--Manaja encargados-->
+                                            <!--Le puedes cambiar el status, se reinician la aplicacion -->
+          <!--Botones encargado-->
+          <li routerLink="/encargado/estadisticas">
+            <div class="extra">
+              <i class="fa-solid fa-chart-pie"></i>
+              Estadisticas
+            </div>
+          </li> <!-- Muestra datos como: venta actual, venta del dia(al cerrar caja), producto mas vendido,
+                                                      producto menos vendido, vendedor con mas ventas, vendedor
+                                                      con menos venta asi como una grafica sobre las ventas del mes -->
+          <li routerLink="/encargado/almacen">
+            <div class="extra">
+              <i class="fa-solid fa-dolly"></i>
+              Almacen
+            </div>
+          </li> <!-- Administra y muestra insumos en el almacen, si esta en
+                                                 0 el insumo se puede agregar a una lista para enviar a el
+                                                proveedor -->
+          <li routerLink="/encargado/productos">
+            <div class="extra">
+              <i class="fa-solid fa-cash-register"></i>
+              Productos
+            </div>
+          </li> <!-- Administra los productos que vendes, esta lista la ve el vendedor -->
+          <li routerLink="/encargado/trabajadores">
+            <div class="extra">
+              <i class="fa-solid fa-people-group"></i>
+              Trabajadores
+            </div>
+          </li> <!-- Administra trabajadores -->
+        </ul>
+      </div>
+
+      <div class="user-info">
+        <small><i class="fa-solid fa-user-gear"></i> Usuario </small>
+        <small><i class="fa-solid fa-right-to-bracket"></i> Logout</small>
+      </div>
+      <p class="creator">By FAJG</p>
+    </div>
+  </nav>
+
+  <!-- Componente -->
+  <div class="resultado" id="resultado">
+
+    <router-outlet></router-outlet>
+
+  </div>
+</div>

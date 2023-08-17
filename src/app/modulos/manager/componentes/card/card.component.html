@@ -1,0 +1,47 @@
+
+<div class="card-container" (click)="clickInfo()" @slideInOut>
+  <img [src]="insumo.foto" alt="" class="card-picture">
+  <div class="card-info">
+    <div class="card-title">{{insumo.nombre}}</div>
+    <small class="mb-3">{{insumo.tipo}}</small>
+
+    <div class="listMenu">
+      <button (click)="listaAdd($event)" class="btn-add" ><i class="fa-solid fa-plus" ></i></button>
+      <button (click)="listaMinus($event)" class="btn-add minus"><i class="fa-solid fa-minus" ></i></button>
+    </div>
+
+  </div>
+</div>
+
+<div class="editar" (click)="clickOut($event)" [class.show] = "show==true">
+  <div class="contenedor" (click)="$event.stopPropagation()">
+    <form action="" [formGroup]="modForm" (ngSubmit)="modificar()">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" formControlName="nombre">
+        <label for="floatingInput">Nombre</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" formControlName="tipo">
+        <label for="floatingInput">Tipo</label>
+      </div>
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Imagen de insumo</label>
+        <input class="form-control" type="file" id="formFile" (change)="onFileChange($event)">
+      </div>
+      <div *ngIf="error">
+        <small><i class="fa-solid fa-circle-exclamation" style="color: #f24a4a;"></i> No puede haber mas de 12 caracteres o no llenaste los datos</small>
+      </div>
+      <div>
+        <button class="btn" type="submit">Modificar</button>
+        <button class="btn cancel" type="button" (click)="clickOut($event)">Cancelar</button>
+        <button type="button" class="btn warning" (click)="eliminar()">Eliminar</button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<div class="spinner" [class.show-spinner]="loading">
+  <mat-progress-spinner class="spn" color="primary" mode="indeterminate" value="50" diameter="100"></mat-progress-spinner>
+  <p class="spn-txt">Cargando..</p>
+</div>

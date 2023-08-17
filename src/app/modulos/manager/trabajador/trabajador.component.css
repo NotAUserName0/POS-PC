@@ -1,0 +1,68 @@
+.contenedor{
+  font-family: 'REM', sans-serif;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.title{
+  font-weight: 100;
+  font-size: 50px;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.log{
+  text-align: center;
+  max-height: 350px;
+  overflow-y: scroll;
+  width: 90%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  scrollbar-width: none;
+  z-index: 0;
+  border-radius: 15px;
+  box-shadow: 1px 1px 5px 2px black;
+}
+
+.log::-webkit-scrollbar {
+  display: none;
+}
+
+table{
+  width: 100%;
+}
+
+thead{
+  position: sticky;
+  top: 0;
+}
+
+.tht{
+  background-color: rgb(101, 101, 240);
+  color: white;
+}
+
+th{
+  cursor: default;
+}
+
+#table th{
+  font-weight: 200;
+}
+
+tr #dta:hover{
+  background-color: rgb(172, 172, 240);
+  cursor: pointer !important;
+}
+
+
+button{
+  position: relative;
+  width: 200px;
+  margin: 0px 0px 0px 15px;
+  top: 60%;
+  left: 55%;
+}

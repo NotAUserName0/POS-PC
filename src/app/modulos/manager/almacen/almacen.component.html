@@ -1,0 +1,65 @@
+<div class="contenedor" @slideInOut >
+
+  <p>Almacen</p>
+
+  <div class="form-floating mb-3">
+    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+    <label for="floatingInput" class="form-label">Buscar </label>
+  </div>
+
+  <div class="sorting">
+
+    <button type="button" class="btn" (click)="popIn()">Agregar insumo</button>
+    <button type="button" class="btn" (click)="proveedor()">Lista a proveedor</button>
+
+  </div>
+
+  <div class="grid">
+    <div class="grid-item" *ngFor="let insumo of insumos | filtro:paginas">
+      <app-card [insumo]="insumo" (listItem)="addToList($event)" (listItemM)="delFromList($event)"></app-card>
+    </div>
+  </div>
+
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <div *ngFor="let dato of repeatArray; let i = index">
+        <li class="page-item" [class.active]="paginaActual==i"><button class="page-link"
+            (click)="pagination(dato)">{{dato+1}}</button></li>
+      </div>
+    </ul>
+  </nav>
+
+  <!-- Add -->
+  <div class="background-pop" id="pop" (click)="popOut($event)" >
+    <div class="pop-container" id="container" (click)="$event.stopPropagation()">
+
+      <form action="" class="add" [formGroup]="addForm" (ngSubmit)="agregar()">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingInput" formControlName="nombre">
+          <label for="floatingInput">Nombre</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingInput" formControlName="tipo">
+          <label for="floatingInput">Tipo</label>
+        </div>
+        <div class="mb-3">
+          <label for="formFile" class="form-label">Imagen de insumo</label>
+          <input class="form-control" type="file" id="formFile" (change)="onFileChange($event)">
+        </div>
+        <div *ngIf="error">
+          <small><i class="fa-solid fa-circle-exclamation" style="color: #f24a4a;"></i> Rellena todos los datos</small>
+        </div>
+        <div>
+          <button class="btn" type="submit">Registrar</button>
+          <button class="btn cancel" type="button" (click)="popOut($event)">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="spinner" [class.show-spinner]="loading">
+    <mat-progress-spinner class="spn" color="primary" mode="indeterminate" value="50" diameter="100"></mat-progress-spinner>
+    <p class="spn-txt">Cargando..</p>
+  </div>
+
+</div>

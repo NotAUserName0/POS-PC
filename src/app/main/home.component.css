@@ -1,0 +1,176 @@
+.paneles{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100vh;
+  z-index: 1;
+}
+
+nav{
+  width: 10%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-right: 0.2px solid rgb(216, 214, 214);
+  cursor: pointer;
+  transition: width 0.3s ease;
+}
+
+/* BUTTON NAV */
+.reactive{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+/*noinspection ALL*/
+.icon{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%,-50%);
+  cursor: pointer;
+}
+
+/* NAVBAR FULL*/
+.nave{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  background-color: white;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.brand{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.brand p{
+  font-family: 'REM', sans-serif;
+  font-size: 30px;
+  font-style: italic;
+  margin-left: 10px;
+  margin-bottom: 0px;
+}
+
+.lista-menu{
+  padding: 0px;
+  margin-top: 20px;
+}
+
+.lista-menu li{
+  text-decoration: none;
+  list-style: none;
+  cursor: pointer;
+  text-align: left;
+  padding: 15px 15px 15px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.lista-menu li:hover{
+  background-color: rgb(101, 101, 240);
+  color: white;
+}
+
+.extra i{
+  margin-right: 10px;
+  transition: margin 0.6s ease;
+}
+
+li:hover .extra i{
+  margin-right: 20px;
+}
+
+.creator{
+  font-family: 'REM', sans-serif !important;
+  font-weight: 200;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* User info */
+.user-info{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 100%;
+  position: absolute;
+  bottom: 10%;
+}
+
+small button{
+  background-color: transparent;
+  border: none;
+}
+
+small{
+  margin-top: 10px;
+  padding: 15px 0px 15px 25px;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+small:hover{
+  background-color: rgb(101, 101, 240);
+  color: white;
+}
+
+small:hover button{
+  color: white;
+}
+
+small i{
+  margin-right: 10px;
+  transition: margin 0.3s ease;
+}
+
+small:hover i{
+  margin-right: 18px;
+}
+
+/* RESULTADO */
+.resultado{
+  width: 90%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: width 0.3s ease;
+}
+
+/* functions */
+
+.menu-toggle{
+  width: 25%;
+}
+
+.res-toggle{
+  width: 75%;
+}
+
+.show{
+  opacity: 1;
+  visibility: visible;
+  /*display: block;*/
+  cursor: default;
+}
+
+.hide{
+  opacity: 0;
+  visibility: hidden;
+  /*display: none;*/
+}
