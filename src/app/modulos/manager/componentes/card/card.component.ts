@@ -23,42 +23,37 @@ import Swal from "sweetalert2";
 })
 export class CardComponent {
 
-  @Input() insumo: Insumo;
-  modForm: FormGroup
-  archivo: File | undefined
-  show: boolean = false
-  loading: boolean = false
-  error:boolean = false
+  /* INSUMO */
+  @Input() insumo: Insumo; //recive insumo de componente padre
+  /* FORM */
+  modForm: FormGroup // grupo de form
+  archivo: File | undefined //variable de control de archivo
+  error: boolean = false //variable de control de error
+  /* MODIFICAR */
+  show: boolean = false //variable de control para mostrar u ocultar menu de editar
+  /* VARIABLES DE CONTROL GLOBALES */
+  loading: boolean = false //variable de control para mostrar el pop de cargando
+
 
   constructor(private fb: FormBuilder,
               private almacenService: AlmacenService) {
   }
 
+  /* ESTADOS */
+
   ngOnInit() {
     this.modForm = this.fb.group({
       id: [this.insumo['_id']],
-      nombre: [this.insumo.nombre, [Validators.required,Validators.maxLength(12)]],
-      tipo: [this.insumo.tipo,Validators.maxLength(12)]
+      nombre: [this.insumo.nombre, [Validators.required, Validators.maxLength(12)]],
+      tipo: [this.insumo.tipo, Validators.maxLength(12)]
 
     })
   }
 
-  onFileChange(event: any) {
-    this.archivo = event.target.files[0];
-  }
-
-  clickInfo() {
-    //console.log(this.insumo)
-    window.scrollTo(0, 0)
-    this.show = true
-  }
-
-  clickOut(event) {
-    this.show = false
-  }
+  /* FUNCIONAMIENTO */
 
   modificar() {
-    if(this.modForm.valid) {
+    if (this.modForm.valid) {
       this.error = false
       this.loading = true
       const formData = new FormData() //lo subimos asi por si tiene o no archivo
@@ -86,22 +81,31 @@ export class CardComponent {
           })
         }, error => {
           this.loading = false
-          Swal.fire({
-            icon: 'error',
-            title: 'Imposible modificar',
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 4500,
-            timerProgressBar: true,
-            customClass: {
-              title: 'barra'
+          const newError = {
+            ubicacion: "CARD",
+            descripcion: "modificar method",
+            contenido: error
+          }
+          this.almacenService.nuevoError(JSON.stringify(newError)).subscribe(
+            res => {
+              Swal.fire({
+                icon: 'error',
+                title: 'Imposible modificar',
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 4500,
+                timerProgressBar: true,
+                customClass: {
+                  title: 'barra'
+                }
+              })
             }
-          })
+          ).closed
           console.log(error)
         }
       )
-    }else{
+    } else {
       this.error = true
     }
   } /*DONE*/
@@ -125,23 +129,52 @@ export class CardComponent {
         }
       })
     }, (error) => {
-      Swal.fire({
-        icon: 'error',
-        title: 'Imposible eliminar',
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 4500,
-        timerProgressBar: true,
-        customClass: {
-          title: 'barra'
+      this.loading = false
+      const newError = {
+        ubicacion: "CARD",
+        descripcion: "eliminar method",
+        contenido: error
+      }
+      this.almacenService.nuevoError(JSON.stringify(newError)).subscribe(
+        res => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Imposible eliminar',
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 4500,
+            timerProgressBar: true,
+            customClass: {
+              title: 'barra'
+            }
+          })
         }
-      })
+      ).closed
       console.log(error)
     })
   } /*DONE*/
 
+  /* EXTRAS PARA MODIFICAR */
+
+  onFileChange(event: any) {
+    this.archivo = event.target.files[0];
+  }
+
+  clickInfo() {
+    //console.log(this.insumo)
+    window.scrollTo(0, 0)
+    this.show = true
+  }
+
+  clickOut(event) {
+    this.show = false
+  }
+
+  /* EXPORTA VALORES PARA MODIFICAR LA LISTA DE PROVEEDORES */
+
   @Output() listItem = new EventEmitter<any>();
+
   listaAdd(event: any) {
     event.stopPropagation()
 
@@ -153,7 +186,8 @@ export class CardComponent {
   }
 
   @Output() listItemM = new EventEmitter<any>();
-  listaMinus(event:any){
+
+  listaMinus(event: any) {
     event.stopPropagation()
     const data = {
       id: this.modForm.get('id').value,

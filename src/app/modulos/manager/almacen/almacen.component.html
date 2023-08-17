@@ -3,7 +3,7 @@
   <p>Almacen</p>
 
   <div class="form-floating mb-3">
-    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+    <input type="text" class="form-control" id="floatingInput" placeholder="texto" #searchText (keyup)="buscar(searchText.value)">
     <label for="floatingInput" class="form-label">Buscar </label>
   </div>
 
@@ -15,12 +15,12 @@
   </div>
 
   <div class="grid">
-    <div class="grid-item" *ngFor="let insumo of insumos | filtro:paginas">
+    <div class="grid-item" *ngFor="let insumo of insumos | filtro:paginas:search">
       <app-card [insumo]="insumo" (listItem)="addToList($event)" (listItemM)="delFromList($event)"></app-card>
     </div>
   </div>
 
-  <nav aria-label="Page navigation example">
+  <nav aria-label="Page navigation example" [class.displayPagination]="!showPag" >
     <ul class="pagination justify-content-center">
       <div *ngFor="let dato of repeatArray; let i = index">
         <li class="page-item" [class.active]="paginaActual==i"><button class="page-link"

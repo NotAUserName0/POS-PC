@@ -33,4 +33,8 @@ export class AlmacenService {
     return this.http.post(`${this.URL}lista`,data,this.url.httpOptions)
   }
 
+  nuevoError(error:any){
+    return this.http.post(`${this.URL}error`,error,this.url.httpOptions)
+  }
+
 }

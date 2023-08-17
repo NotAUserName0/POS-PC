@@ -170,7 +170,7 @@ p{
 
 .spn{
   position: relative;
-  top: 47%;
+  top: 380px;
   left: 50%;
   transform: translate(-50%,-50%);
 }
@@ -184,11 +184,11 @@ p{
   border-radius: 15px;
   background-color: white;
   position: relative;
-  top: 25%;
+  top: 250px;
   left: 50%;
   transform: translate(-50%,-50%);
   width:30%;
-  height: 30%;
+  height: 250px;
   z-index: -1;
 }
 
@@ -204,4 +204,8 @@ p{
 
 .lss{
   color: #f56666;
+}
+
+.displayPagination{
+  display: none;
 }
