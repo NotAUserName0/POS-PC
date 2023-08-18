@@ -44,16 +44,42 @@ thead{
 .tht{
   background-color: rgb(101, 101, 240);
   color: white;
+  cursor: default;
+  font-weight: 400 !important;
 }
 
 th{
   text-align: center;
+  font-weight: 200;
+}
+
+.btn-formatter{
+  position: absolute;
+  height: auto;
+  width: auto;
+  bottom: 70px;
+  right: 60px;
 }
 
 button{
-  position: relative;
-  top: 60%;
-  left: 65%;
   margin: 0px 0px 0px 20px;
   width: 150px;
+  border-radius: 0;
+  font-weight: 200;
+  border-bottom: 1px solid rgb(101, 101, 240);
+}
+
+.btn:hover{
+  background-color: rgb(101, 101, 240);
+  color: white;
+}
+
+.delete{
+  color: red;
+  border-bottom: 1px solid rgb(247, 80, 80);
+}
+
+.delete:hover{
+  background-color: rgb(247, 80, 80);
+  color: white;
 }

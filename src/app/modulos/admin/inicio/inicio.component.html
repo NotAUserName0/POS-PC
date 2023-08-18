@@ -6,25 +6,26 @@
       <thead>
         <tr>
           <th class="col-1 tht">id</th>
-          <th class="tht">Descripcion</th>
-          <th class="col-2 tht">User</th>
-          <th class="col-2 tht">Status</th>
+          <th class="col-1 tht">Ubicacion</th>
+          <th class="col-1 tht">Descripcion</th>
+          <th class="col-4 tht">Contenido</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let log of logs">
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
-          <th>&nbsp;</th>
+          <th>{{log._id}}</th>
+          <th>{{log.ubicacion}}</th>
+          <th>{{log.descripcion}}</th>
+          <th>{{log.contenido}}</th>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <button type="button" class="btn btn-success p-2" (click)="emailMe()">Enviar por correo</button>
-  <button type="button" class="btn btn-danger p-2" (click)="clean()">Limpiar</button>
-
+  <div class="btn-formatter">
+    <button type="button" class="btn p-2" (click)="emailMe()">Enviar por correo</button>
+    <button type="button" class="btn delete p-2" (click)="clean()">Limpiar</button>
+  </div>
 </div>
 
 

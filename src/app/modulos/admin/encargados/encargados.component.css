@@ -19,6 +19,7 @@
   max-height: 350px;
   overflow-y: scroll;
   width: 90%;
+  height: 500px;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -34,6 +35,7 @@
 
 table{
   width: 100%;
+  cursor: default;
 }
 
 thead{
@@ -44,27 +46,204 @@ thead{
 .tht{
   background-color: rgb(101, 101, 240);
   color: white;
+  cursor: default;
+  font-weight: 400 !important;
 }
 
 th{
-  cursor: default;
-}
-
-#table th{
+  text-align: center;
+  max-width: 100px;
+  white-space: nowrap;
+  overflow-x: scroll;
+  scrollbar-width: none;
   font-weight: 200;
 }
 
-tr #dta:hover{
-  background-color: rgb(172, 172, 240);
-  cursor: pointer !important;
+th::-webkit-scrollbar {
+  display: none;
+}
+
+#encargados th:hover{
+  background-color: #5a7af6;
+  color: white;
+}
+
+.btn-formatter{
+  position: absolute;
+  height: auto;
+  width: auto;
+  bottom: 70px;
+  right: 60px;
 }
 
 button{
-  position: relative;
-  width: 200px;
-  margin: 0px 0px 0px 15px;
-  top: 60%;
-  left: 55%;
+  margin: 0px 0px 0px 20px;
+  width: 180px;
+  border-radius: 0;
+  font-weight: 200;
+  border-bottom: 1px solid rgb(101, 101, 240);
 }
 
+.btn:hover{
+  background-color: rgb(101, 101, 240);
+  color: white;
+}
+
+.delete{
+  color: red;
+  border-bottom: 1px solid rgb(247, 80, 80);
+}
+
+.delete:hover{
+  background-color: rgb(247, 80, 80);
+  color: white;
+}
+
+.form-floating{
+  width: 80%;
+}
+
+
+.form-control{
+  background: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid rgb(101, 101, 240);
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+.form-label{
+  background: transparent !important;
+  font-weight: 200;
+}
+
+.form-control:focus + .form-label {
+  color: black; /* Cambiar el color del texto para asegurar la legibilidad */
+}
+
+.form-control:focus{
+  box-shadow: none;
+}
+
+
+.background-pop{
+  background-color: rgba(0, 0, 0, 0.432);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  z-index: -5;
+  transition: opacity 0.6s ease;
+}
+
+.pop-container{
+  width: 600px;
+  height: 400px;
+  background-color: white;
+  border-radius: 15px;
+  position: relative;
+  top: 150px;
+  left: 25%;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.add{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: 200;
+}
+
+.add .btn{
+  font-weight: 200;
+  margin-top: 20px;
+}
+
+.add input{
+  font-weight: 200;
+}
+
+.show{
+  opacity: 1;
+  z-index: 3;
+  overflow-y: hidden;
+}
+
+.spinner{
+  position:relative;
+  background-color: rgba(0, 0, 0, 0.438);
+  width: 100%;
+  height: 100vh;
+  bottom: 155px;
+  display: flex;
+  flex-direction: column;
+  z-index: -1;
+  opacity: 0;
+  display: none;
+}
+
+.spn{
+  position: relative;
+  top: 380px;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.spn-txt{
+  cursor: default;
+  text-align: center;
+  font-size: 50px;
+  margin-right: 10px;
+  font-weight: 100;
+  border-radius: 15px;
+  background-color: white;
+  position: relative;
+  top: 250px;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width:30%;
+  height: 250px;
+  z-index: -1;
+}
+
+.show-spinner{
+  z-index: 8;
+  opacity: 1;
+  display: block;
+}
+
+.input-mod{
+  background-color: transparent;
+  border: none;
+  cursor: default;
+  width: 100%;
+  font-weight: 200;
+}
+
+.input-mod:active{
+  cursor: text;
+  border: 0;
+  outline: 0;
+}
+
+.input-mod:focus{
+  cursor: text;
+  border: 0;
+  outline: 0;
+}
+
+.barra{
+  font-family: 'REM', sans-serif;
+  font-weight: 100;
+}
 

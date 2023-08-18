@@ -1,30 +1,75 @@
 <div class="contenedor" [@slideInOut]>
 
   <p class="title">Encargados</p>
+
   <div class="log" id="log">
-    <table class="table">
+    <table class="table table-hover">
       <thead>
-        <tr>
-          <th class="col-1 tht">id</th>
-          <th class="col-2 tht">Nombre</th>
-          <th class="col-3 tht">Contacto</th>
-          <th class="col-2 tht">Contraseña</th>
-          <th class="col-1 tht">&nbsp;</th>
-        </tr>
+      <tr>
+        <th class="col-1 tht">id</th>
+        <th class="col-2 tht">Nombre</th>
+        <th class="col-2 tht">User</th>
+        <th class="col-2 tht">Contacto</th>
+        <th class="tht">Contraseña</th>
+        <th class="col-1 tht"> </th>
+      </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let encargado of encargados" id="table">
-          <th>{{encargado.id}}</th>
-          <th id="dta" (click)="cambiarNombre(encargado.nombre)">{{encargado.nombre}}</th>
-          <th id="dta" (click)="cambiarContacto(encargado.contacto)">{{encargado.contacto}}</th>
-          <th id="dta" (click)="cambiarContra(encargado.pass)">{{encargado.pass}}</th>
-          <th id="dta" (click)="eliminarEncargado(encargado.id)"><i class="fa-solid fa-trash" style="color: #000000;"></i></th>
-        </tr>
+      <tr *ngFor="let encargado of encargados?.reverse()" id="encargados">
+        <th>{{encargado._id}}</th>
+        <th><input class="input-mod" type="text" value="{{encargado.nombre}}" #nombre (keyup.enter)="cambiarNombre(nombre.value, encargado._id)" (blur)="cambiarNombre(nombre.value, encargado._id)"></th>
+        <th><input class="input-mod" type="text" value="{{encargado.user}}" #user (keyup.enter)="cambiarUsuario(user.value, encargado._id)" (blur)="cambiarUsuario(user.value, encargado._id)"></th>
+        <th><input class="input-mod" type="text" value="{{encargado.contacto}}" #contacto (keyup.enter)="cambiarContacto(contacto.value, encargado._id)" (blur)="cambiarContacto(contacto.value, encargado._id)"></th>
+        <th ><input class="input-mod" type="text" value="***********" #password (keyup.enter)="cambiarPassword(password.value, encargado._id)" (blur)="cambiarPassword(password.value, encargado._id)"></th>
+        <th (click)="eliminarEncargado(encargado._id)"><i class="fa-solid fa-trash"></i></th>
+      </tr>
       </tbody>
     </table>
   </div>
 
-  <button type="button" class="btn btn-success p-2" (click)="agregar()">Agregar encargado</button>
-  <button type="button" class="btn btn-danger p-2" (click)="limpiar()">Limpiar lista</button>
+  <div class="btn-formatter">
+    <button type="button" class="btn p-2" (click)="popIn()">Agregar encargado</button>
+    <button type="button" class="btn delete p-2" (click)="limpiar()">Limpiar lista</button>
+  </div>
+
+  <!-- Add -->
+  <div class="background-pop" id="pop" (click)="popOut($event)" >
+    <div class="pop-container" id="container" (click)="$event.stopPropagation()">
+
+      <form action="" class="add" [formGroup]="addForm" (ngSubmit)="agregar()">
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingInput" formControlName="nombre">
+          <label for="floatingInput">Nombre</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingInput" formControlName="user">
+          <label for="floatingInput">Usuario</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingInput" formControlName="contacto">
+          <label for="floatingInput">Contacto</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="floatingInput" formControlName="password">
+          <label for="floatingInput">Password</label>
+        </div>
+        <div *ngIf="error">
+          <small><i class="fa-solid fa-circle-exclamation" style="color: #f24a4a;"></i> Rellena todos los datos</small>
+        </div>
+        <div>
+          <button class="btn" type="submit">Registrar</button>
+          <button class="btn delete" type="button" (click)="popOut($event)">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!--Spinner-->
+  <div class="spinner" [class.show-spinner]="loading">
+    <mat-progress-spinner class="spn" color="primary" mode="indeterminate" value="50" diameter="100"></mat-progress-spinner>
+    <p class="spn-txt">Cargando..</p>
+  </div>
 
 </div>
+
+

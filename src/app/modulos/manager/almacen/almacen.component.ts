@@ -70,6 +70,10 @@ export class AlmacenComponent implements OnInit {
     })
   }
 
+  ngOnDestroy(){
+    this.socketService.disconnectSocket()
+  }
+
   /* PAGINACION */
 
   pagination(pagina: any) {
@@ -86,7 +90,6 @@ export class AlmacenComponent implements OnInit {
     } else {
       this.showPag = true
     }
-    console.log(this.search)
   }
 
   /* FUNCIONAMIENTO */
@@ -138,6 +141,7 @@ export class AlmacenComponent implements OnInit {
             }
           }).then(() => {
             //borra el form
+            this.addForm.reset()
           })
         }, (error) => {
           console.log(error)
@@ -352,7 +356,6 @@ export class AlmacenComponent implements OnInit {
   }
 
   delFromList(data: any) {
-    console.log(this.listaProveedor)
     if (this.listaProveedor.length != 0) {
       this.listaProveedor = this.listaProveedor.filter(objeto => objeto.id !== data?.id);
       this.cookieService.set('lista', JSON.stringify(this.listaProveedor))
