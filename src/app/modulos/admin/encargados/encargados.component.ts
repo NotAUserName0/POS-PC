@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {EncargadoService} from "../services/encargado.service";
 import {Encargado} from "../models/encargado.model";
 import {Socket} from "../../../global/socket";
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
     selector: 'app-encargados',
@@ -256,10 +257,39 @@ export class EncargadosComponent {
             confirmButtonText: 'Si, eliminalo!'
         }).then((result) => {
             if (result.isConfirmed) {
-                //msg en la respuesta del servicio o el error en el servicio
-                Swal.fire('Eliminado!', '', 'success')
+                this.encargadoService.eliminarTodo().subscribe((resultado)=>{
+                  console.log(resultado)
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Eliminado',
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 4500,
+                    timerProgressBar: true,
+                    customClass: {
+                      title: 'barra'
+                    }
+                  })
+                },error=>{
+                  console.log(error)
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'Imposible Eliminar',
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 4500,
+                    timerProgressBar: true,
+                    customClass: {
+                      title: 'barra'
+                    }
+                  })
+
+                })
+
             } else if (result.isDenied) {
-                Swal.fire('Cancelado', '', 'info')
+
             }
         })
     }

@@ -28,4 +28,8 @@ export class EncargadoService {
   eliminarUno(id:any){
     return this.http.delete(`${this.URL}eliminarUno/${id}`)
   }
+
+  eliminarTodo(){
+    return this.http.delete(`${this.URL}drop`)
+  }
 }
