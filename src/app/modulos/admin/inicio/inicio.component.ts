@@ -29,7 +29,7 @@ export class InicioComponent {
   ngOnInit(){
     this.logService.obtenerErrores().subscribe(
       res=>{
-        console.log(res)
+        //console.log(res)
         this.logs = res
       },error=>{
         console.log(error)

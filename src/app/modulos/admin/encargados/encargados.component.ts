@@ -342,7 +342,6 @@ export class EncargadosComponent {
 
     mostrar() {
         this.encargadoService.obtener().subscribe(result => {
-            console.log(result)
             this.encargados = result
         }, error => {
             console.log(error)

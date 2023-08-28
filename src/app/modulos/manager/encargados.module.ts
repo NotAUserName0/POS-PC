@@ -10,6 +10,8 @@ import { CardComponent } from './componentes/card/card.component';
 import { FiltroPipe } from './filtros/filtro.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import {NgApexchartsModule} from "ng-apexcharts";
+import { GraficaComponent } from './componentes/grafica/grafica.component';
 
 
 @NgModule({
@@ -19,13 +21,15 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     AlmacenComponent,
     ProductosComponent,
     CardComponent,
-    FiltroPipe
+    FiltroPipe,
+    GraficaComponent
   ],
   imports: [
     CommonModule,
     EncargadosRoutingModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NgApexchartsModule
   ]
 })
 export class EncargadosModule { }

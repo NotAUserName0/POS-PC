@@ -1,1 +1,53 @@
-<p>estadisticas works!</p>
+<div class="contenedor">
+  <div class="estadisticas">ESTADISTICAS</div>
+
+  <div class="graficas">
+    <div class="graficaVentaSemana">
+      <app-grafica [datos]="tablaMes"></app-grafica>
+    </div>
+    <div class="graficaVentaMes">
+      <app-grafica [datos]="tablaSem"></app-grafica>
+    </div>
+  </div>
+
+  <div class="opciones">
+    <div class="ventaActual">
+      <div class="ventaTitle">Venta Actual</div>
+      <div class="dato">10,000.50 $</div>
+      <div class="btn-venta">
+        <button class="btn-o" [disabled]="ventaIniciada" (click)="estadoVenta()" [class.btn-dis]="ventaIniciada">Abrir</button>
+        <button class="btn-c" [disabled]="!ventaIniciada" (click)="estadoVenta()" [class.btn-dis]="!ventaIniciada">Cerrar</button>
+      </div>
+    </div> <!-- Se reinicia cada 24 horas es temporal -->
+
+    <div class="ventaDia">
+      <div class="ventaTitle">Venta del Dia</div>
+      <div class="dato">10,000.50 $</div>
+    </div> <!-- Cuando el manager cierra caja los vendedores no pueden ya vender y se
+                                    almacena la venta(total, fecha, venta), el total es obtenido de la tabla de ventas
+                                    este contiene dos botones(abrir y cerrar caja) y al cerrar muestra el resultado y borra
+                                    la venta actual es decir la tabla ventas-->
+
+    <div class="productoMayor">
+      <div class="prodTitle">Se vende mas</div>
+      <div class="prod">Producto</div>
+    </div> <!-- Cada venta se almacena en una tabla ventas, la cual al final del dia este
+                                         guarda en otra lista el producto que mas se vendio y este cuadro lo muestra-->
+
+    <div class="productoMenor">
+      <div class="prodTitle">Se vende menos</div>
+      <div class="prod">Producto</div>
+    </div> <!-- Funciona igual que el de mayor, solo que con el que menos se vendio -->
+  </div>
+
+  <!-- Cada dato es semanal, entonces en resumen, al la tabla venta, todos
+  los vendedores alamcenan su venta, de ahi se va obteniendo la venta actual
+  y al cerrar la caja se guarda en una lista prodMayor cual fue el que mas se
+  vendio ese dia, tambien en otra el que se vendio menos-->
+
+  <!-- La venta del dia se almacena en una tabla(Ventas) aparte para actualizar las
+   graficas depende el tipo de grafica es como se reinicia-->
+
+  <!-- Cada semana las listas de productos mayor y menor -->
+
+</div>

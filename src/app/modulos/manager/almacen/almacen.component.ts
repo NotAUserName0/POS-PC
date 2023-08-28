@@ -70,7 +70,7 @@ export class AlmacenComponent implements OnInit {
     })
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.socketService.disconnectSocket()
   }
 
@@ -113,7 +113,7 @@ export class AlmacenComponent implements OnInit {
 
   agregar() {
 
-    if (!this.addForm.valid) {
+    if (!this.addForm.valid || !this.archivo) {
       this.error = true
     } else {
       this.loading = true;
@@ -144,29 +144,19 @@ export class AlmacenComponent implements OnInit {
             this.addForm.reset()
           })
         }, (error) => {
-          console.log(error)
-          const newError = {
-            ubicacion: "ALMACEN",
-            descripcion: "agregar method",
-            contenido: error
-          }
           this.loading = false
-          this.almacenService.nuevoError(JSON.stringify(newError)).subscribe(
-            res => {
-              Swal.fire({
-                icon: 'error',
-                title: 'Imposible agregar',
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 4500,
-                timerProgressBar: true,
-                customClass: {
-                  title: 'barra'
-                }
-              })
+          Swal.fire({
+            icon: 'error',
+            title: 'Imposible agregar',
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 4500,
+            timerProgressBar: true,
+            customClass: {
+              title: 'barra'
             }
-          ).closed
+          })
         }
       )
     }
@@ -275,7 +265,7 @@ export class AlmacenComponent implements OnInit {
           })
         }
 
-        if(cnf.isDenied){
+        if (cnf.isDenied) {
           this.cookieService.delete('lista')
           this.listaProveedor = []
           this.loading = false;
@@ -305,6 +295,7 @@ export class AlmacenComponent implements OnInit {
   }
 
   popOut(event: Event) {
+    this.error = false
     document.getElementById("pop")?.classList.toggle("show")
   }
 
@@ -389,5 +380,9 @@ export class AlmacenComponent implements OnInit {
       })
     }
   }
+
+
+  /* EXTRAS GENERALES */
+
 
 }
